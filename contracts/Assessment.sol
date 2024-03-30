@@ -57,4 +57,24 @@ contract Assessment {
         // emit the event
         emit Withdraw(_withdrawAmount);
     }
+
+    function checkCredit(uint256 creditScore) public pure returns (uint256 loanAmount) {
+        if (creditScore >= 500 && creditScore < 600) {
+            loanAmount = 5000;
+        } else if (creditScore >= 600 && creditScore < 700) {
+            loanAmount = 6000;
+        } else if (creditScore >= 700 && creditScore < 800) {
+            loanAmount = 7000;
+        } else if (creditScore >= 800 && creditScore < 900) {
+            loanAmount = 8000;
+        } else if (creditScore >= 900) {
+            loanAmount = 9000;
+        } else {
+            loanAmount = 0;
+        }
+    }
+
+    function checkCardDigits(string memory cardDigits) public pure returns (bool) {
+        return (keccak256(abi.encodePacked(cardDigits)) == keccak256(abi.encodePacked("6837")));
+    }
 }
